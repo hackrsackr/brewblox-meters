@@ -22,8 +22,8 @@ ENV SERVICE_INFO=${service_info}
 COPY --from=base /wheeley /wheeley
 
 RUN set -ex \
-    && pip3 install --no-index --find-links=/wheeley YOUR-PACKAGE \
+    && pip3 install --no-index --find-links=/wheeley brewblox-meters \
     && rm -rf /wheeley \
     && pip3 freeze
 
-ENTRYPOINT ["python3", "-m", "YOUR_PACKAGE"]
+ENTRYPOINT ["python3", "-m", "brewblox_meters"]

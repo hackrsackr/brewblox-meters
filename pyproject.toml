@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "YOUR-PACKAGE"
+name = "brewblox-meters"
 version = "0.1.0"
-description = "ADD DESCRIPTION HERE"
-authors = ["Code Fairies Inc <noreply@santa.com>"]
+description = "brewblox pH meters service"
+authors = ["Rob Knighton <rob.knighton10@gmail.com>"]
 license = "GPL-3.0"
 readme = "README.md"
 
