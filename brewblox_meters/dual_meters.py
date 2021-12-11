@@ -58,7 +58,7 @@ class MeterOutput(object):
         return volts * 4
 
     def mAs_to_ORP(self, mAs) -> float:
-        return 400 - (mAs * 27.9)
+        return 400 - (mAs * 28.57)
 
 try:
     client.connect_async(host=HOST, port=PORT)
@@ -85,11 +85,11 @@ try:
             meter_1_output.ORP = meter_1_output.mAs_to_ORP(meter_1_output.mAs)
 
             d1[meter_1_output.name] = {
-                'adc': round(meter_1_output.adc, 2),
+                #'adc': round(meter_1_output.adc),
                 'volts': round(meter_1_output.volts, 2),
                 'mA': round(meter_1_output.mAs, 2),
                 'pH': round(meter_1_output.pH, 2),
-                'ORP': round(meter_1_output.ORP, 2)
+                'ORP': round(meter_1_output.ORP)
             }
 
         d2 = {}
@@ -110,11 +110,11 @@ try:
             meter_2_output.ORP = meter_2_output.mAs_to_ORP(meter_2_output.mAs)
 
             d2[meter_2_output.name] = {
-                'adc': round(meter_2_output.adc, 2),
+                #'adc': round(meter_2_output.adc),
                 'volts': round(meter_2_output.volts, 2),
                 'mA': round(meter_2_output.mAs, 2),
                 'pH': round(meter_2_output.pH, 2),
-                'ORP': round(meter_2_output.ORP, 2)
+                'ORP': round(meter_2_output.ORP)
             }
 
         ''' Output '''
