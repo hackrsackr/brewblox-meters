@@ -1,0 +1,7 @@
+services:
+  meters:
+    container_name: meters
+    image: hackrsackr/brewblox-meters:latest
+    restart: unless-stopped
+    privileged: true
+version: '3.7'
