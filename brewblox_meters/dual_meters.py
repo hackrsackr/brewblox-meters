@@ -39,8 +39,10 @@ GAIN = 2/3
 
 volt_max = 4.096 / GAIN
 
+
 class MeterOutput(object):
     '''Class for 4-20ma industrial meters'''
+
     def __init__(self, name) -> None:
         self.name = name
 
@@ -65,18 +67,18 @@ try:
         meter_1_outputs = ['output_1', 'output_2', 'output_3', 'output_4']
 
         for index, meter_1_output in enumerate(meter_1_outputs):
-        # Initiate each meter_1_output with a name
+            # Initiate each meter_1_output with a name
             meter_1_output = MeterOutput(meter_1_outputs[index])
-            
+
             # value to zero out adc reading if neccessary
             adc_trim = 75
 
-            # read adc and trim if negative 
+            # read adc and trim if negative
             meter_1_output.adc = ads1.read_adc(index, gain=GAIN)
             meter_1_output.volts = meter_1_output.adc * volt_max / ADS_FULLSCALE
             meter_1_output.mA = meter_1_output.volts_to_mA(meter_1_output.volts)
             meter_1_output.pH = meter_1_output.volts_to_pH(meter_1_output.volts)
-            
+
             d1[meter_1_output.name] = {
                 'adc': round(meter_1_output.adc, 2),
                 'volts': round(meter_1_output.volts, 2),
@@ -86,29 +88,28 @@ try:
 
         d2 = {}
         meter_2_outputs = ['output_1', 'output_2', 'output_3', 'output_4']
-        
+
         for index, meter_2_output in enumerate(meter_2_outputs):
-        # Initiate each meter_1_output with name, unit of measure, unit_max, and bit_max
+            # Initiate each meter_1_output with name, unit of measure, unit_max, and bit_max
             meter2_output = MeterOutput(meter_2_outputs[index])
-            
+
             GAIN = 2/3
             volt_max = 4.096 / GAIN
             adc_trm = 16
 
-            meter_1_output.adc = ads2.read_adc(index, gain=GAIN) 
+            meter_1_output.adc = ads2.read_adc(index, gain=GAIN)
             meter_1_output.volts = meter_1_output.adc * volt_max / ADS_FULLSCALE
             meter_1_output.mA = meter_1_output.volts_to_mA(meter_1_output.volts)
             meter_1_output.pH = meter_1_output.volts_to_pH(meter_1_output.volts)
-            
+
             d2[meter_1_output.name] = {
                 'adc': round(meter_1_output.adc, 2),
                 'volts': round(meter_1_output.volts, 2),
                 'mA': round(meter_1_output.mA, 2),
                 'pH': round(meter_1_output.pH, 2)
-            }    
+            }
 
-
-        ''' Output '''        
+        ''' Output '''
         message = {
             'key': 'meters',
             'data': {'meter_1': d1, 'meter_2': d2}

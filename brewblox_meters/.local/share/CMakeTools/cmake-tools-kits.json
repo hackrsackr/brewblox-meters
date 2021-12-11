@@ -1,0 +1,9 @@
+[
+  {
+    "name": "GCC 10.2.1 arm-linux-gnueabihf",
+    "compilers": {
+      "C": "/bin/gcc-10",
+      "CXX": "/bin/g++-10"
+    }
+  }
+]

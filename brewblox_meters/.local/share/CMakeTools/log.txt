@@ -1,0 +1,172 @@
+2021-12-11T14:36:52.145Z [debug] [main] Safe constructing new CMakeTools instance
+2021-12-11T14:36:52.155Z [debug] [variant] Constructing VariantManager
+2021-12-11T14:36:52.164Z [debug] [main] Constructing new CMakeTools instance
+2021-12-11T14:36:52.167Z [debug] [main] Starting CMakeTools second-phase init
+2021-12-11T14:36:53.225Z [info] [variant] Loaded new set of variants
+2021-12-11T14:36:53.233Z [debug] [main] CMakeTools instance initialization complete.
+2021-12-11T14:36:53.266Z [debug] [kit] Reading kits file /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-11T14:36:53.509Z [info] [kit] Successfully loaded 1 kits from /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-11T14:36:53.520Z [debug] [kit] Not reading non-existent kits file: /home/pi/.vscode/cmake-kits.json
+4Z [debug] [kitsController] Rescanning for kits
+2021-12-08T21:07:40.978Z [debug] [kit] Scanning for Kits on system
+2021-12-08T21:07:41.005Z [debug] [kit] Scanning directory /home/pi/.vscode-server/bin/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247/bin for compilers
+2021-12-08T21:07:41.008Z [debug] [kit] Scanning directory /usr/local/sbin for compilers
+2021-12-08T21:07:41.010Z [debug] [kit] Scanning directory /usr/local/bin for compilers
+2021-12-08T21:07:41.012Z [debug] [kit] Scanning directory /usr/sbin for compilers
+2021-12-08T21:07:41.015Z [debug] [kit] Scanning directory /usr/bin for compilers
+2021-12-08T21:07:41.017Z [debug] [kit] Scanning directory /sbin for compilers
+2021-12-08T21:07:41.019Z [debug] [kit] Scanning directory /bin for compilers
+2021-12-08T21:07:41.021Z [debug] [kit] Scanning directory /usr/local/games for compilers
+2021-12-08T21:07:41.023Z [debug] [kit] Scanning directory /usr/games for compilers
+2021-12-08T21:07:41.025Z [debug] [kit] Skipping scan of not existing path undefined\LLVM\bin
+2021-12-08T21:07:41.027Z [debug] [kit] Found 0 kits in directory undefined\LLVM\bin
+2021-12-08T21:07:41.041Z [debug] [kit] Found 0 kits in directory /home/pi/.vscode-server/bin/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247/bin
+2021-12-08T21:07:41.043Z [debug] [kit] Found 0 kits in directory /usr/local/sbin
+2021-12-08T21:07:41.049Z [debug] [kit] Found 0 kits in directory /usr/local/bin
+2021-12-08T21:07:41.174Z [debug] [kit] Found 0 kits in directory /usr/sbin
+2021-12-08T21:07:41.271Z [debug] [kit] Found 0 kits in directory /sbin
+2021-12-08T21:07:41.297Z [debug] [kit] Testing GCC binary: /usr/bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:07:41.300Z [info] [proc] Executing command: /usr/bin/arm-linux-gnueabihf-gcc -v
+2021-12-08T21:07:41.328Z [debug] [kit] Testing GCC binary: /usr/bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:07:41.329Z [info] [proc] Executing command: /usr/bin/arm-linux-gnueabihf-gcc-10 -v
+2021-12-08T21:07:41.384Z [debug] [kit] Testing GCC binary: /usr/bin/c89-gcc
+2021-12-08T21:07:41.385Z [info] [proc] Executing command: /usr/bin/c89-gcc -v
+2021-12-08T21:07:41.413Z [debug] [kit] Testing GCC binary: /usr/bin/c99-gcc
+2021-12-08T21:07:41.415Z [info] [proc] Executing command: /usr/bin/c99-gcc -v
+2021-12-08T21:07:41.501Z [debug] [kit] Testing GCC binary: /usr/bin/gcc
+2021-12-08T21:07:41.502Z [info] [proc] Executing command: /usr/bin/gcc -v
+2021-12-08T21:07:41.528Z [debug] [kit] Testing GCC binary: /usr/bin/gcc-10
+2021-12-08T21:07:41.530Z [info] [proc] Executing command: /usr/bin/gcc-10 -v
+2021-12-08T21:07:41.778Z [debug] [kit] Found 0 kits in directory /usr/local/games
+2021-12-08T21:07:41.779Z [debug] [kit] Found 0 kits in directory /usr/games
+2021-12-08T21:07:41.814Z [debug] [kit] Testing GCC binary: /bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:07:41.815Z [info] [proc] Executing command: /bin/arm-linux-gnueabihf-gcc -v
+2021-12-08T21:07:41.852Z [debug] [kit] Testing GCC binary: /bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:07:41.854Z [info] [proc] Executing command: /bin/arm-linux-gnueabihf-gcc-10 -v
+2021-12-08T21:07:41.904Z [debug] [kit] Testing GCC binary: /bin/c89-gcc
+2021-12-08T21:07:41.906Z [info] [proc] Executing command: /bin/c89-gcc -v
+2021-12-08T21:07:41.931Z [debug] [kit] Testing GCC binary: /bin/c99-gcc
+2021-12-08T21:07:41.933Z [info] [proc] Executing command: /bin/c99-gcc -v
+2021-12-08T21:07:42.010Z [debug] [kit] Testing GCC binary: /bin/gcc
+2021-12-08T21:07:42.011Z [info] [proc] Executing command: /bin/gcc -v
+2021-12-08T21:07:42.037Z [debug] [kit] Testing GCC binary: /bin/gcc-10
+2021-12-08T21:07:42.038Z [info] [proc] Executing command: /bin/gcc-10 -v
+2021-12-08T21:07:42.310Z [debug] [kit] Detected GCC compiler: /bin/gcc-10
+2021-12-08T21:07:42.320Z [debug] [kit] Detected GCC compiler: /bin/gcc
+2021-12-08T21:07:42.329Z [debug] [kit] Detected GCC compiler: /bin/c99-gcc
+2021-12-08T21:07:42.339Z [debug] [kit] Detected GCC compiler: /bin/c89-gcc
+2021-12-08T21:07:42.348Z [debug] [kit] Detected GCC compiler: /bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:07:42.357Z [debug] [kit] Detected GCC compiler: /bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:07:42.367Z [debug] [kit] Detected GCC compiler: /usr/bin/gcc-10
+2021-12-08T21:07:42.376Z [debug] [kit] Detected GCC compiler: /usr/bin/gcc
+2021-12-08T21:07:42.386Z [debug] [kit] Detected GCC compiler: /usr/bin/c99-gcc
+2021-12-08T21:07:42.395Z [debug] [kit] Detected GCC compiler: /usr/bin/c89-gcc
+2021-12-08T21:07:42.404Z [debug] [kit] Detected GCC compiler: /usr/bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:07:42.414Z [debug] [kit] Detected GCC compiler: /usr/bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:07:42.418Z [debug] [kit] Found 6 kits in directory /bin
+2021-12-08T21:07:42.420Z [debug] [kit] Found 6 kits in directory /usr/bin
+2021-12-08T21:07:42.422Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.423Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.424Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.425Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.425Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.426Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.427Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.428Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.429Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.429Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.430Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.431Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:07:42.435Z [debug] [kitsController] Saving kits to /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:07:42.436Z [debug] [kitsController] Saving new kits to /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:07:42.461Z [debug] [kitsController] Start selection of kits. Found 3 kits.
+2021-12-08T21:07:42.462Z [debug] [kitsController] Opening kit selection QuickPick
+2021-12-08T21:07:42.480Z [debug] [kit] Reading kits file /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:07:42.718Z [info] [kit] Successfully loaded 1 kits from /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:08:01.430Z [debug] [kitsController] Rescanning for kits
+2021-12-08T21:08:01.432Z [debug] [kit] Scanning for Kits on system
+2021-12-08T21:08:01.452Z [debug] [kit] Scanning directory /home/pi/.vscode-server/bin/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247/bin for compilers
+2021-12-08T21:08:01.454Z [debug] [kit] Scanning directory /usr/local/sbin for compilers
+2021-12-08T21:08:01.457Z [debug] [kit] Scanning directory /usr/local/bin for compilers
+2021-12-08T21:08:01.459Z [debug] [kit] Scanning directory /usr/sbin for compilers
+2021-12-08T21:08:01.462Z [debug] [kit] Scanning directory /usr/bin for compilers
+2021-12-08T21:08:01.464Z [debug] [kit] Scanning directory /sbin for compilers
+2021-12-08T21:08:01.466Z [debug] [kit] Scanning directory /bin for compilers
+2021-12-08T21:08:01.468Z [debug] [kit] Scanning directory /usr/local/games for compilers
+2021-12-08T21:08:01.470Z [debug] [kit] Scanning directory /usr/games for compilers
+2021-12-08T21:08:01.472Z [debug] [kit] Skipping scan of not existing path undefined\LLVM\bin
+2021-12-08T21:08:01.474Z [debug] [kit] Found 0 kits in directory undefined\LLVM\bin
+2021-12-08T21:08:01.486Z [debug] [kit] Found 0 kits in directory /home/pi/.vscode-server/bin/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247/bin
+2021-12-08T21:08:01.488Z [debug] [kit] Found 0 kits in directory /usr/local/sbin
+2021-12-08T21:08:01.494Z [debug] [kit] Found 0 kits in directory /usr/local/bin
+2021-12-08T21:08:01.604Z [debug] [kit] Found 0 kits in directory /usr/sbin
+2021-12-08T21:08:01.714Z [debug] [kit] Found 0 kits in directory /sbin
+2021-12-08T21:08:01.716Z [debug] [kit] Found 0 kits in directory /usr/local/games
+2021-12-08T21:08:01.717Z [debug] [kit] Found 0 kits in directory /usr/games
+2021-12-08T21:08:01.748Z [debug] [kit] Testing GCC binary: /usr/bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:08:01.750Z [info] [proc] Executing command: /usr/bin/arm-linux-gnueabihf-gcc -v
+2021-12-08T21:08:01.780Z [debug] [kit] Testing GCC binary: /usr/bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:08:01.782Z [info] [proc] Executing command: /usr/bin/arm-linux-gnueabihf-gcc-10 -v
+2021-12-08T21:08:01.828Z [debug] [kit] Testing GCC binary: /usr/bin/c89-gcc
+2021-12-08T21:08:01.829Z [info] [proc] Executing command: /usr/bin/c89-gcc -v
+2021-12-08T21:08:01.856Z [debug] [kit] Testing GCC binary: /usr/bin/c99-gcc
+2021-12-08T21:08:01.858Z [info] [proc] Executing command: /usr/bin/c99-gcc -v
+2021-12-08T21:08:01.931Z [debug] [kit] Testing GCC binary: /usr/bin/gcc
+2021-12-08T21:08:01.932Z [info] [proc] Executing command: /usr/bin/gcc -v
+2021-12-08T21:08:01.961Z [debug] [kit] Testing GCC binary: /usr/bin/gcc-10
+2021-12-08T21:08:01.963Z [info] [proc] Executing command: /usr/bin/gcc-10 -v
+2021-12-08T21:08:02.184Z [debug] [kit] Testing GCC binary: /bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:08:02.186Z [info] [proc] Executing command: /bin/arm-linux-gnueabihf-gcc -v
+2021-12-08T21:08:02.211Z [debug] [kit] Testing GCC binary: /bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:08:02.213Z [info] [proc] Executing command: /bin/arm-linux-gnueabihf-gcc-10 -v
+2021-12-08T21:08:02.256Z [debug] [kit] Testing GCC binary: /bin/c89-gcc
+2021-12-08T21:08:02.257Z [info] [proc] Executing command: /bin/c89-gcc -v
+2021-12-08T21:08:02.283Z [debug] [kit] Testing GCC binary: /bin/c99-gcc
+2021-12-08T21:08:02.285Z [info] [proc] Executing command: /bin/c99-gcc -v
+2021-12-08T21:08:02.360Z [debug] [kit] Testing GCC binary: /bin/gcc
+2021-12-08T21:08:02.361Z [info] [proc] Executing command: /bin/gcc -v
+2021-12-08T21:08:02.387Z [debug] [kit] Testing GCC binary: /bin/gcc-10
+2021-12-08T21:08:02.389Z [info] [proc] Executing command: /bin/gcc-10 -v
+2021-12-08T21:08:02.610Z [debug] [kit] Detected GCC compiler: /bin/gcc-10
+2021-12-08T21:08:02.619Z [debug] [kit] Detected GCC compiler: /bin/gcc
+2021-12-08T21:08:02.628Z [debug] [kit] Detected GCC compiler: /bin/c99-gcc
+2021-12-08T21:08:02.637Z [debug] [kit] Detected GCC compiler: /bin/c89-gcc
+2021-12-08T21:08:02.647Z [debug] [kit] Detected GCC compiler: /bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:08:02.656Z [debug] [kit] Detected GCC compiler: /bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:08:02.666Z [debug] [kit] Detected GCC compiler: /usr/bin/gcc-10
+2021-12-08T21:08:02.675Z [debug] [kit] Detected GCC compiler: /usr/bin/gcc
+2021-12-08T21:08:02.684Z [debug] [kit] Detected GCC compiler: /usr/bin/c99-gcc
+2021-12-08T21:08:02.693Z [debug] [kit] Detected GCC compiler: /usr/bin/c89-gcc
+2021-12-08T21:08:02.702Z [debug] [kit] Detected GCC compiler: /usr/bin/arm-linux-gnueabihf-gcc-10
+2021-12-08T21:08:02.711Z [debug] [kit] Detected GCC compiler: /usr/bin/arm-linux-gnueabihf-gcc
+2021-12-08T21:08:02.715Z [debug] [kit] Found 6 kits in directory /bin
+2021-12-08T21:08:02.717Z [debug] [kit] Found 6 kits in directory /usr/bin
+2021-12-08T21:08:02.718Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.719Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.720Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.720Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.721Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.722Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.723Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.724Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.725Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.726Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.726Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.727Z [info] [kit] Found Kit: GCC 10.2.1 arm-linux-gnueabihf
+2021-12-08T21:08:02.730Z [debug] [kitsController] Saving kits to /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:08:02.731Z [debug] [kitsController] Saving new kits to /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:08:02.757Z [debug] [extension] [8339] cmake.quickStart finished (returned -1)
+2021-12-08T21:08:02.770Z [debug] [kit] Reading kits file /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:08:02.945Z [info] [kit] Successfully loaded 1 kits from /home/pi/.local/share/CMakeTools/cmake-tools-kits.json
+2021-12-08T21:31:29.570Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:31:29.617Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:31:29.620Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:33:42.109Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:33:42.126Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:34:53.259Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:35:59.346Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T21:42:03.106Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T22:01:24.171Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T22:01:24.198Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T22:07:56.365Z [debug] [main] Not starting CMake driver: no kits defined
+2021-12-08T22:07:56.378Z [debug] [main] Not starting CMake driver: no kits defined

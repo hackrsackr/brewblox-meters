@@ -6,12 +6,12 @@ from argparse import ArgumentParser
 
 from brewblox_service import brewblox_logger, http, mqtt, scheduler, service
 
-from brewblox_meters import http_example, publish_example, subscribe_example
+from brewblox_meters import ads1115, dual_meters
 
 LOGGER = brewblox_logger(__name__)
 
 
-def create_parser(default_name='meters') -> ArgumentParser:
+def create_parser(default_name='brewblox_meters') -> ArgumentParser:
     # brewblox-service has some default arguments
     # We can add more arguments here before sending the parser back to brewblox-service
     # The parsed values for all arguments are placed in app['config']
@@ -49,9 +49,8 @@ def main():
     # To keep everything consistent, examples also have the setup() function
     # In setup() they register everything that must be done before the service starts
     # It's not required to use this pattern, but it makes code easier to understand
-    subscribe_example.setup(app)
-    publish_example.setup(app)
-    http_example.setup(app)
+    ads1115.setup(app)
+    dual_meters.setup(app)
 
     # Add all default endpoints, and adds prefix to all endpoints
     #
