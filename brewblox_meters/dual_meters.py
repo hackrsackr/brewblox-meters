@@ -23,17 +23,19 @@ TOPIC = HISTORY_TOPIC + '/meters'
 client = mqtt.Client(transport='websockets')
 client.ws_set_options(path='/eventbus')
 
-''' ADS1115 STUFF '''
-# ADS1115 names and addresses
-# ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
-# ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
-# ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
-# ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
+
+'''
+ADS1115 names and addresses
 ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
 ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
+ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
+ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
+'''
+ads1 = ADS1115(address=0x48)  
+ads2 = ADS1115(address=0x49)
 
-# Max positive bits of ADS1115
-ADS_FULLSCALE = 32768
+# Max positive bits of ADS1115's 16 bit signed integer
+ADS_FULLSCALE = 32767
 
 GAIN = 2/3
 
