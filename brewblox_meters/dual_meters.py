@@ -58,7 +58,7 @@ class MeterOutput(object):
         return volts * 4
 
     def mAs_to_ORP(self, mAs) -> float:
-        return 400 - (mAs * 28.57)
+        return 400 - (mAs * 27.9)
 
 try:
     client.connect_async(host=HOST, port=PORT)
@@ -78,7 +78,7 @@ try:
             adc_trim = 75
 
             # read adc and trim if negative
-            meter_1_output.adc = ads1.read_adc(index, gain=GAIN)
+            meter_1_output.adc = ads1.read_adc(index, gain=GAIN) + adc_trim
             meter_1_output.volts = meter_1_output.adc * volt_max / ADS_FULLSCALE
             meter_1_output.mAs = meter_1_output.volts_to_mA(meter_1_output.volts)
             meter_1_output.pH = meter_1_output.volts_to_pH(meter_1_output.volts)
@@ -88,7 +88,8 @@ try:
                 'adc': round(meter_1_output.adc, 2),
                 'volts': round(meter_1_output.volts, 2),
                 'mA': round(meter_1_output.mAs, 2),
-                'pH': round(meter_1_output.pH, 2)
+                'pH': round(meter_1_output.pH, 2),
+                'ORP': round(meter_1_output.ORP, 2)
             }
 
         d2 = {}
@@ -112,7 +113,8 @@ try:
                 'adc': round(meter_2_output.adc, 2),
                 'volts': round(meter_2_output.volts, 2),
                 'mA': round(meter_2_output.mAs, 2),
-                'pH': round(meter_2_output.pH, 2)
+                'pH': round(meter_2_output.pH, 2),
+                'ORP': round(meter_2_output.ORP, 2)
             }
 
         ''' Output '''
