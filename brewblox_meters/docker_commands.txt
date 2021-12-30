@@ -1,0 +1,10 @@
+docker build --tag hackrsackr/brewblox-meters brewblox_meters/
+
+docker run --privileged -d --rm --tty brewblox-meters
+
+docker push hackrsackr/brewblox-meters:latest
+
+docker pull hackrsackr/brewblox-meters:latest
+
+
+
