@@ -87,9 +87,9 @@ try:
             d1[meter_1_output.name] = {
                 #'adc': round(meter_1_output.adc),
                 'volts': round(meter_1_output.volts, 2),
-                'mA': round(meter_1_output.mAs, 2),
-                'pH': round(meter_1_output.pH, 2),
-                'ORP': round(meter_1_output.ORP)
+                'mA'   : round(meter_1_output.mAs, 2),
+                'pH'   : round(meter_1_output.pH, 2),
+                'ORP'  : round(meter_1_output.ORP)
             }
 
         d2 = {}
@@ -112,14 +112,14 @@ try:
             d2[meter_2_output.name] = {
                 #'adc': round(meter_2_output.adc),
                 'volts': round(meter_2_output.volts, 2),
-                'mA': round(meter_2_output.mAs, 2),
-                'pH': round(meter_2_output.pH, 2),
-                'ORP': round(meter_2_output.ORP)
+                'mA'   : round(meter_2_output.mAs, 2),
+                'pH'   : round(meter_2_output.pH, 2),
+                'ORP'  : round(meter_2_output.ORP)
             }
 
         ''' Output '''
         message = {
-            'key': 'meters',
+            'key' : 'meters',
             'data': {'meter_1': d1, 'meter_2': d2}
         }
 
