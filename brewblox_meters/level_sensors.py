@@ -6,7 +6,7 @@ from time import sleep
 #from paho.mqtt import client as mqtt
 
 from ads1115 import ADS1115
-from analog_sensor import LevelSensor, MeterOutput
+from analog_sensor import LevelSensor
 from kettle import BrewKettle
 
 '''
@@ -16,44 +16,41 @@ ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
 ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
 ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
 '''
-ads1 = ADS1115(address=0x48)
-ads2 = ADS1115(address=0x49)
-ads3 = ADS1115(address=0x4a)
-ads4 = ADS1115(address=0x4b)
+ads = ADS1115(address=0x4a)
 
 # Max positive bits of ADS1115's 16 bit signed integer
 ADS_FULLSCALE = 32767
-
 GAIN = 2/3
 
+# init kettles for max_volume
 boilKettle = BrewKettle()
 mashKettle = BrewKettle()
 liqrKettle = BrewKettle()
 
-boil_liquidLevel = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
-mash_liquidLevel = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)
-liqr_liquidLevel = LevelSensor(liqrKettle.max_volume_liters, ADS_FULLSCALE)
+boil_levelSensor = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
+mash_levelSensor = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)
+liqr_levelSensor = LevelSensor(liqrKettle.max_volume_liters, ADS_FULLSCALE)
 
-level_sensors = [boil_liquidLevel, mash_liquidLevel, liqr_liquidLevel]
+level_sensors = [boil_levelSensor, mash_levelSensor, liqr_levelSensor]
+level_sensors_names = ['boil_volume', 'mash_volume', 'liqr_volume']
 
-for index, level_sensor in enumerate(level_sensors):
-    level_sensor.adc     = ads1.read_adc(index, gain=GAIN)
-    level_sensor.volts   = level_sensor.read_volts(level_sensor.adc)
-    level_sensor.liters  = level_sensor.read_liters(level_sensor.adc)
+d = {}
 
-    #print(level_sensor.liters)
+while True:
+    for index, level_sensor in enumerate(level_sensors):
+        level_sensor.name = level_sensors_names[index]
+        level_sensor.adc = ads.read_adc(index, gain=GAIN)
 
-ph1 = MeterOutput(10, ADS_FULLSCALE)
-ph2 = MeterOutput(10, ADS_FULLSCALE)
-ph3 = MeterOutput(10, ADS_FULLSCALE)
-ph4 = MeterOutput(10, ADS_FULLSCALE)
+        d[level_sensor.name] = {
+            'adc'     : level_sensor.adc,
+            'volts'   : round(level_sensor.read_volts(level_sensor.adc),2),
+            'liters'  : round(level_sensor.read_liters(level_sensor.adc), 2),
+            'gallons' : round(level_sensor.read_gallons(level_sensor.adc), 2)
+        }
 
-meter_outputs = [ph1, ph2, ph3, ph4]
-
-for index, meter_output in enumerate(meter_outputs):
-    meter_output.adc     = ads1.read_adc(index, gain=GAIN) + 75
-    meter_output.volts   = meter_output.read_volts(meter_output.adc)
-    meter_output.ph  = meter_output.read_ph(meter_output.adc)
-
-    print(index, meter_output.volts, meter_output.ph)
-
+    message = {
+        'key' : 'level_sensors',
+        'data': d
+    }
+    print(json.dumps(message, sort_keys=False, indent=4))
+    sleep(5)

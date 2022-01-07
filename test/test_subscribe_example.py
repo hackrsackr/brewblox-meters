@@ -4,7 +4,7 @@ Checks whether subscribe_example.SubscribingFeature works as expected.
 
 import pytest
 from brewblox_service.testing import matching
-from mock import AsyncMock
+from unittest.mock import AsyncMock
 
 from brewblox_meters import subscribe_example
 

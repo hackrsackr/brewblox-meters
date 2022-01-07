@@ -6,7 +6,7 @@ Checks whether the publish_example.PublishingFeature works as expected.
 import pytest
 from aresponses import ResponsesMockServer
 from brewblox_service import http, repeater, scheduler
-from mock import AsyncMock
+from unittest.mock import AsyncMock
 
 from brewblox_meters import publish_example
 

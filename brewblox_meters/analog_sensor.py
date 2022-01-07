@@ -34,7 +34,7 @@ class LevelSensor(AnalogSensor):
         self.signal_volt_max = 5.0
 
     def read_volts(self, adc) -> float:
-        return adc * self.volt_max / self.bit_max
+        return adc * self.ads_volt_max / self.bit_max
 
     def read_liters(self, adc) -> float:
         #return adc * self.unit_max / self.bit_max
