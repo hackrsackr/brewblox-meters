@@ -3,7 +3,7 @@
 import json
 from time import sleep
 
-from paho.mqtt import client as mqtt
+#from paho.mqtt import client as mqtt
 
 from ads1115 import ADS1115
 from analog_sensor import LevelSensor, MeterOutput
@@ -16,7 +16,7 @@ ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
 ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
 ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
 '''
-ads1 = ADS1115(address=0x48)  
+ads1 = ADS1115(address=0x48)
 ads2 = ADS1115(address=0x49)
 ads3 = ADS1115(address=0x4a)
 ads4 = ADS1115(address=0x4b)
@@ -30,8 +30,8 @@ boilKettle = BrewKettle()
 mashKettle = BrewKettle()
 liqrKettle = BrewKettle()
 
-boil_liquidLevel = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)    
-mash_liquidLevel = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)    
+boil_liquidLevel = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
+mash_liquidLevel = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)
 liqr_liquidLevel = LevelSensor(liqrKettle.max_volume_liters, ADS_FULLSCALE)
 
 level_sensors = [boil_liquidLevel, mash_liquidLevel, liqr_liquidLevel]

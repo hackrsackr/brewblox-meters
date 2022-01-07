@@ -7,7 +7,7 @@ class AnalogSensor(object):
     def __init__(self, unit_max, bit_max) -> None:
         self.unit_max = unit_max
         self.bit_max = bit_max
-        
+
 
 class PressureSensor(AnalogSensor):
     '''Subclass of AnalogSensor for [.5-4.5v] pressure transducers'''
@@ -29,22 +29,26 @@ class LevelSensor(AnalogSensor):
 
     def __init__(self, unit_max, bit_max) -> None:
         super(LevelSensor, self).__init__(unit_max, bit_max)
-        self.volt_max = 6.144
+        self.ads_gain = 2/3
+        self.ads_volt_max = 4.096 / self.ads_gain
+        self.signal_volt_max = 5.0
 
     def read_volts(self, adc) -> float:
         return adc * self.volt_max / self.bit_max
 
     def read_liters(self, adc) -> float:
-        return adc * self.unit_max / self.bit_max
+        #return adc * self.unit_max / self.bit_max
+        return adc * self.ads_volt_max / self.bit_max * self.unit_max / self.signal_volt_max
 
     def read_gallons(self, adc) -> float:
-        return adc * self.unit_max / 3.785 / self.bit_max
+        #return adc * self.unit_max / 3.785 / self.bit_max
+        return adc * self.ads_volt_max / self.bit_max * self.unit_max / self.signal_volt_max / 3.785
 
 
 class FlowMeter(AnalogSensor):
     '''Subclass of AnalogSensor for 5v flow meters'''
 
-    def __init__(self, name, unit_max, bit_max) -> None:
+    def __init__(self, unit_max, bit_max) -> None:
         super(FlowMeter, self).__init__(unit_max, bit_max)
 
     def get_flow_rate(self, adc) -> float:
@@ -59,7 +63,7 @@ class MeterOutput(AnalogSensor):
         super(MeterOutput, self).__init__(unit_max, bit_max)
         self.ma_max = 20.0
         self.ads_gain = 2/3
-        self.ads_volt_max = 4.096 / self.ads_gain 
+        self.ads_volt_max = 4.096 / self.ads_gain
         self.signal_volt_max = 5.0
 
     def read_ma(self, adc) -> float:
@@ -67,20 +71,9 @@ class MeterOutput(AnalogSensor):
 
     def read_volts(self, adc) -> None:
         return adc * self.ads_volt_max / self.bit_max
-    
+
     def read_ph(self, adc) -> float:
-        #return volts * self.unit_max / self.signal_volt_max
-       # volts = adc * self.ads_volt_max / self.bit_max
         return adc * self.ads_volt_max / self.bit_max * self.unit_max / self.signal_volt_max
 
     def read_orp(self, adc) -> float:
         return 400 - (adc * self.ma_max / self.bit_max * 28.57)
-
-    def read_us(self, adc) -> float:
-        return adc * self.unit_max / self.bit_max * 10
-
-    def read_tds(self, adc) -> float:
-        return adc * self.unit_max / self.bit_max * 6.5
-
-
-################################### EOF #####################################
