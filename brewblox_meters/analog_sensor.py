@@ -36,13 +36,11 @@ class LevelSensor(AnalogSensor):
     def read_volts(self, adc) -> float:
         return adc * self.ads_volt_max / self.bit_max
 
-    def read_liters(self, adc) -> float:
-        #return adc * self.unit_max / self.bit_max
-        return adc * self.ads_volt_max / self.bit_max * self.unit_max / self.signal_volt_max
+    def read_liters(self, adc, offset) -> float:
+        return (adc-offset) * self.unit_max / (self.bit_max-offset) * (self.ads_volt_max / self.signal_volt_max)
 
-    def read_gallons(self, adc) -> float:
-        #return adc * self.unit_max / 3.785 / self.bit_max
-        return adc * self.ads_volt_max / self.bit_max * self.unit_max / self.signal_volt_max / 3.785
+    def read_gallons(self, adc, offset) -> float:
+        return (adc-offset) * self.unit_max / (self.bit_max-offset) * (self.ads_volt_max / self.signal_volt_max) / 3.785
 
 
 class FlowMeter(AnalogSensor):

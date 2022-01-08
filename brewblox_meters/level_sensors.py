@@ -23,16 +23,17 @@ ADS_FULLSCALE = 32767
 GAIN = 2/3
 
 # init kettles for max_volume
-boilKettle = BrewKettle()
-mashKettle = BrewKettle()
 liqrKettle = BrewKettle()
+mashKettle = BrewKettle()
+boilKettle = BrewKettle()
 
-boil_levelSensor = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
-mash_levelSensor = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)
 liqr_levelSensor = LevelSensor(liqrKettle.max_volume_liters, ADS_FULLSCALE)
+mash_levelSensor = LevelSensor(mashKettle.max_volume_liters, ADS_FULLSCALE)
+boil_levelSensor = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
 
-level_sensors = [boil_levelSensor, mash_levelSensor, liqr_levelSensor]
-level_sensors_names = ['boil_volume', 'mash_volume', 'liqr_volume']
+level_sensors = [liqr_levelSensor, mash_levelSensor, boil_levelSensor]
+level_sensors_names = ['liqr_volume', 'mash_volume', 'boil_volume']
+offsets = [6553, 6553, 6553]
 
 d = {}
 
@@ -40,12 +41,14 @@ while True:
     for index, level_sensor in enumerate(level_sensors):
         level_sensor.name = level_sensors_names[index]
         level_sensor.adc = ads.read_adc(index, gain=GAIN)
+        level_sensor.maxVol = level_sensor.unit_max
 
         d[level_sensor.name] = {
-            'adc'     : level_sensor.adc,
-            'volts'   : round(level_sensor.read_volts(level_sensor.adc),2),
-            'liters'  : round(level_sensor.read_liters(level_sensor.adc), 2),
-            'gallons' : round(level_sensor.read_gallons(level_sensor.adc), 2)
+            'adc'       : level_sensor.adc,
+            'max_volume': round(level_sensor.unit_max, 2),
+            'volts'     : round(level_sensor.read_volts(level_sensor.adc), 2),
+            'liters'    : round(level_sensor.read_liters(level_sensor.adc, offsets[index]), 2),
+            'gallons'   : round(level_sensor.read_gallons(level_sensor.adc, offsets[index]), 2)
         }
 
     message = {
