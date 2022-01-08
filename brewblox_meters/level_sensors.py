@@ -33,7 +33,7 @@ boil_levelSensor = LevelSensor(boilKettle.max_volume_liters, ADS_FULLSCALE)
 
 level_sensors = [liqr_levelSensor, mash_levelSensor, boil_levelSensor]
 level_sensors_names = ['liqr_volume', 'mash_volume', 'boil_volume']
-offsets = [6553, 6553, 6553]
+offsets = [7984, 6553, 6672]
 
 d = {}
 
@@ -44,11 +44,12 @@ while True:
         level_sensor.maxVol = level_sensor.unit_max
 
         d[level_sensor.name] = {
-            'adc'       : level_sensor.adc,
-            'max_volume': round(level_sensor.unit_max, 2),
-            'volts'     : round(level_sensor.read_volts(level_sensor.adc), 2),
-            'liters'    : round(level_sensor.read_liters(level_sensor.adc, offsets[index]), 2),
-            'gallons'   : round(level_sensor.read_gallons(level_sensor.adc, offsets[index]), 2)
+            'adc'      : level_sensor.adc,
+            'max_vol'  : round(level_sensor.unit_max, 2),
+            'volts'    : round(level_sensor.read_volts(level_sensor.adc), 2),
+            'gallons'  : round((level_sensor.adc - offsets[index]) / 1675, 2),
+         #   'gallons'  : round(level_sensor.read_gallons(level_sensor.adc, offsets[index]), 2)
+            'liters'    : round(level_sensor.read_liters(level_sensor.adc, offsets[index]), 2)
         }
 
     message = {
