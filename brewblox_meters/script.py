@@ -6,6 +6,7 @@ from paho.mqtt import client as mqtt
 from ads1115 import ADS1115
 from Meter import Meter
 from VolumeSensor import VolumeSensor
+#from FlowMeter import FlowMeter
 
 # Brewblox Host ip address
 HOST = '192.168.1.2'
@@ -45,7 +46,7 @@ ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 
 adc3_offsets = [7984, 6553, 6672]
 
-def run():
+def main():
     try:
         client.connect_async(host=HOST, port=PORT)
         client.loop_start()
@@ -97,7 +98,7 @@ def run():
             ''' Output '''
             message = {
                 'key' : 'meters',
-                'data': {'meter_1': d1, 'meter_2': d2, 'volume_sensors' : d3}
+                'data': {'meter_1': d1, 'meter_2': d2, 'volume_sensors': d3}
             }
 
             client.publish(TOPIC, json.dumps(message))
@@ -108,4 +109,4 @@ def run():
         client.loop_stop
 
 if __name__ == '__main__':
-    run()
+    main()
