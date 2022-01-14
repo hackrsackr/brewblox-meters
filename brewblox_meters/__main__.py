@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 
 from brewblox_service import brewblox_logger, http, mqtt, scheduler, service
 
-from brewblox_meters import ads1115, dual_meters
+import Meter, VolumeSensor
 
 LOGGER = brewblox_logger(__name__)
 
@@ -49,8 +49,8 @@ def main():
     # To keep everything consistent, examples also have the setup() function
     # In setup() they register everything that must be done before the service starts
     # It's not required to use this pattern, but it makes code easier to understand
-    ads1115.setup(app)
-    dual_meters.setup(app)
+    Meter.run(app)
+    VolumeSensor.run(app)
 
     # Add all default endpoints, and adds prefix to all endpoints
     #
