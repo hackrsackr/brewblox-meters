@@ -13,8 +13,6 @@ PORT = 80
 
 # The history service is subscribed to all topic starting with this
 HISTORY_TOPIC = 'brewcast/history'
-
-# Specific topic for this script
 TOPIC = HISTORY_TOPIC + '/meters'
 
 '''
