@@ -32,7 +32,6 @@ ADS_MAX_V = 4.096 / GAIN
 keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 adc_offsets = [7984, 6553, 6672]
 
-#offsets = dict(zip(keys, adc_offsets))
 
 class VolumeSensor:
     def __init__(self) -> None:
@@ -73,9 +72,9 @@ class VolumeSensor:
                     self.volts = self.adc * self.adsMaxV / self.bit_max
 
                     data[self.name] = {
-                        'adc'     : self.adc,
-                        'liters'  : round(self.adc_to_liters(), 2),
-                        'gallons' : round(self.adc_to_gallons(), 2)
+                        'adc': self.adc,
+                        'liters': round(self.adc_to_liters(), 2),
+                        'gallons': round(self.adc_to_gallons(), 2)
                     }
 
                 # MQTT message to send to brewblox
@@ -83,7 +82,6 @@ class VolumeSensor:
                     'key': 'VolumeSensors',
                     'data': data
                 }
-
 
                 # Publish message
                 self.client.publish(TOPIC, json.dumps(message))

@@ -1,3 +1,8 @@
+'''
+main script
+reads 4 ads1115 ADC boards outputs into one dictionary
+publishes output to brewblox over mqtt
+'''
 import json
 from time import sleep
 
@@ -24,16 +29,11 @@ TOPIC = HISTORY_TOPIC + '/meters'
 client = mqtt.Client(transport='websockets')
 client.ws_set_options(path='/eventbus')
 
-'''
-ADS1115 names and addresses
+# ADS1115 names and addresses
 ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
 ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
 ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
 ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
-'''
-ads1 = ADS1115(address=0x48)
-ads2 = ADS1115(address=0x49)
-ads3 = ADS1115(address=0x4a)
 
 # Max positive bits of ADS1115's 16 bit signed integer
 ADS_FULLSCALE = 32767
@@ -43,6 +43,7 @@ ADS_MAX_V = 4.096 / GAIN
 ads1_keys = ['mash_pH', 'boil_pH', 'mash_ORP', 'boil_ORP']
 ads2_keys = ['inline_pH', 'liquor_pH', 'inline_ORP', 'liquor_ORP']
 ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
+ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
 
 adc3_offsets = [7984, 6553, 6672]
 
@@ -52,7 +53,7 @@ def main():
         client.loop_start()
 
         while True:
-            ''' Iterate through ads1 channels and compile data'''
+            ''' Iterate through ads1 channels, populate dict d1'''
             d1 = {}
             for index, ads1_key in enumerate(ads1_keys):
                 m1 = Meter()
@@ -66,7 +67,7 @@ def main():
                     'ORP'  : round(m1.ma_to_orp(m1.ma), 2)
                 }
 
-            ''' Iterate through ads1 channels and compile data'''
+            ''' Iterate through ads2 channels, populate dict d2'''
             d2 = {}
             for index, ads2_key in enumerate(ads2_keys):
                 m2 = Meter()
@@ -80,6 +81,7 @@ def main():
                     'ORP'  : round(m2.ma_to_orp(m2.ma), 2)
                 }
 
+            ''' Iterate through ads3 channels, populate dict d3'''
             d3 ={}
             for index, ads3_key in enumerate(ads3_keys):
                 v = VolumeSensor()
@@ -89,7 +91,6 @@ def main():
                 v.volts = v.adc * v.adsMaxV / v.bit_max
 
                 d3[v.name] = {
-                    'adc'     : v.adc,
                     'liters'  : round(v.adc_to_liters(), 2),
                     'gallons' : round(v.adc_to_gallons(), 2)
                 }
