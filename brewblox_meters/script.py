@@ -40,20 +40,21 @@ ADS_FULLSCALE = 32767
 GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
+# Names of each input
 ads1_keys = ['mash_pH', 'boil_pH', 'mash_ORP', 'boil_ORP']
 ads2_keys = ['inline_pH', 'liquor_pH', 'inline_ORP', 'liquor_ORP']
 ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
 
-adc3_offsets = [7984, 6553, 6672]
 
 def main():
     try:
+        # Create a websocket MQTT client
         client.connect_async(host=HOST, port=PORT)
         client.loop_start()
 
         while True:
-            ''' Iterate through ads1 channels, populate dict d1'''
+            # Iterate through ads1 channels, populate dict d1
             d1 = {}
             for index, ads1_key in enumerate(ads1_keys):
                 m1 = Meter()
@@ -67,7 +68,7 @@ def main():
                     'ORP'  : round(m1.ma_to_orp(m1.ma), 2)
                 }
 
-            ''' Iterate through ads2 channels, populate dict d2'''
+            # Iterate through ads2 channels, populate dict d2
             d2 = {}
             for index, ads2_key in enumerate(ads2_keys):
                 m2 = Meter()
@@ -81,8 +82,9 @@ def main():
                     'ORP'  : round(m2.ma_to_orp(m2.ma), 2)
                 }
 
-            ''' Iterate through ads3 channels, populate dict d3'''
+            # Iterate through ads3 channels, populate dict d3
             d3 ={}
+            adc3_offsets = [7984, 6553, 6672]
             for index, ads3_key in enumerate(ads3_keys):
                 v = VolumeSensor()
                 v.name = ads3_key
@@ -95,8 +97,7 @@ def main():
                     'gallons' : round(v.adc_to_gallons(), 2)
                 }
 
-
-            ''' Output '''
+            # Output
             message = {
                 'key' : 'meters',
                 'data': {'meter_1': d1, 'meter_2': d2, 'volume_sensors': d3}
