@@ -4,4 +4,4 @@
 .vscode/launch.json
 .vscode/ipch
 include/secrets.h
-/Users/robknighton/Developer/PlatformIO/Projects/FlowMeter/src/mqtt.cpp
+include/config.json
