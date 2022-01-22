@@ -17,6 +17,21 @@ void onConnectionEstablished()
     client.publish(TOPIC, message);
 }
 
+void connect() {
+  Serial.print("checking wifi...");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+  }
+
+  Serial.print("\nconnecting...");
+  while (!client.isConnected()) {
+    Serial.print(".");
+    delay(1000);
+  }
+}
+
+
 void setup()
 {
     Serial.begin(115200);
@@ -27,6 +42,11 @@ void loop()
 {
     client.loop();
     delay(10);
+
+    if (!client.isConnected())
+    {
+        connect();
+    }
 
     while (client.isConnected()){
         client.publish(TOPIC, message);
