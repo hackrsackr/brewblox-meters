@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/cores/esp32",
+                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freertos",
+                "/Users/robknighton/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/sysroot/usr/include",
+                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src",
+                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"
+            ],
+            "defines": [],
+            "macFrameworkPath": [
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
+}
