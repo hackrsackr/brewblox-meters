@@ -4,7 +4,6 @@ reads 4 ads1115 ADC boards outputs into one dictionary
 publishes output to brewblox over mqtt
 '''
 import json
-import serial
 from time import sleep
 
 from paho.mqtt import client as mqtt
@@ -45,13 +44,6 @@ ads1_keys = ['mash_pH', 'boil_pH', 'mash_ORP', 'boil_ORP']
 ads2_keys = ['inline_pH', 'liquor_pH', 'inline_ORP', 'liquor_ORP']
 ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
-
-# USB port of esp32 thats reading flowmeters
-FLOWMETER_PORT = '/dev/ttyUSB0'
-
-ser = serial.Serial(port=FLOWMETER_PORT,
-                    baudrate=115200,
-                    timeout=1)
 
 
 def main():
@@ -104,21 +96,10 @@ def main():
                     'gallons': round(v.adc_to_gallons(), 2)
                 }
 
-            d4 = {}
-            flow_data = ser.readline().decode().rstrip()
-            try:
-                flow_data = json.loads(flow_data)
-            except json.JSONDecodeError:
-                continue
-            d4 = flow_data
-
             # Output
             message = {
                 'key': 'meters',
-                'data': {'meter-1': d1,
-                         'meter-2': d2,
-                         'volume-sensors': d3,
-                         'flow-meters': d4}
+                'data': {'meter_1': d1, 'meter_2': d2, 'volume_sensors': d3}
             }
 
             client.publish(TOPIC, json.dumps(message))
@@ -126,7 +107,6 @@ def main():
             sleep(5)
 
     finally:
-        ser.close()
         client.loop_stop
 
 
