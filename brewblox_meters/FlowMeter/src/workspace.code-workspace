@@ -2,6 +2,10 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"name": "brewblox-FlowMeter",
+			"path": "../../../../../../Developer/PlatformIO/Projects/brewblox-FlowMeter"
 		}
 	],
 	"settings": {}
