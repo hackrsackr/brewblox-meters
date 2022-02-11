@@ -1,6 +1,7 @@
 docker build --tag hackrsackr/brewblox-meters brewblox_meters/
-
-docker run --privileged -d --rm --tty brewblox-meters
+er push
+// for serial input
+docker run --privileged -d --rm --tty --volume /dev:/dev hackrsackr/brewblox-meters
 
 docker push hackrsackr/brewblox-meters:latest
 
