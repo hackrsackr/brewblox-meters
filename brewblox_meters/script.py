@@ -14,10 +14,10 @@ from Meter import Meter
 from VolumeSensor import VolumeSensor
 
 # Brewblox Host ip address
-BREWBLOX_HOST = '192.168.1.2'
+HOST = '192.168.1.2'
 
 # Brewblox Port
-BREWBLOX_PORT = 80
+PORT = 80
 
 # The history service is subscribed to all topic starting with this
 HISTORY_TOPIC = 'brewcast/history'
@@ -32,7 +32,8 @@ client.ws_set_options(path='/eventbus')
 # ADS1115 names and addresses
 ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
 ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
-ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
+ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
+ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
 
 # Max positive bits of ADS1115's 16 bit signed integer
 ADS_FULLSCALE = 32767
@@ -40,9 +41,10 @@ GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
 # Names of each input
-ads1_keys = ['output-1', 'output-2', 'output-3', 'output-4']
-ads2_keys = ['output-1', 'output-2', 'output-3', 'output-4']
+ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
+ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
 ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
+ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
 
 # USB port of esp32 thats reading flowmeters
 FLOWMETER_SERIAL_PORT = '/dev/ttyUSB0'
@@ -55,19 +57,17 @@ ser = serial.Serial(port=FLOWMETER_SERIAL_PORT,
 def main():
     try:
         # Create a websocket MQTT client
-        client.connect_async(host=BREWBLOX_HOST, port=BREWBLOX_PORT)
+        client.connect_async(host=HOST, port=PORT)
         client.loop_start()
 
         while True:
             # Iterate through ads1 channels, populate dict d1
-            # m1.adc = m1.ads.read_adc(index, gain=GAIN)
             d1 = {}
-            adc1_offsets = [0, 0, 0]
             for index, ads1_key in enumerate(ads1_keys):
                 m1 = Meter()
                 m1.name = ads1_key
                 m1.ads = ads1
-                m1.adc = m1.read_ads(index, adc1_offsets[index])
+                m1.adc = m1.ads.read_adc(index, gain=GAIN)
                 m1.ma = m1.adc * ADS_MAX_V / ADS_FULLSCALE * 4
 
                 d1[m1.name] = {
@@ -76,14 +76,12 @@ def main():
                 }
 
             # Iterate through ads2 channels, populate dict d2
-            # m2.adc = m2.ads.read_adc(index, gain=GAIN)
             d2 = {}
-            adc2_offsets = [0, 0, 6672]
             for index, ads2_key in enumerate(ads2_keys):
                 m2 = Meter()
                 m2.name = ads2_key
                 m2.ads = ads2
-                m2.adc = m2.read_ads(index, adc2_offsets[index])
+                m2.adc = m2.ads.read_adc(index, gain=GAIN)
                 m2.ma = m2.adc * m2.adsMaxV / m2.bit_max * 4
 
                 d2[m2.name] = {
@@ -106,7 +104,6 @@ def main():
                     'gallons': round(v.adc_to_gallons(), 2)
                 }
 
-            # read json data in from serial port and populate d4 with the data
             d4 = {}
             flow_data = ser.readline().decode().rstrip()
             try:

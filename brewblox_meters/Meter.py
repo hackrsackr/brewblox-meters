@@ -6,10 +6,10 @@ from paho.mqtt import client as mqtt
 from ads1115 import ADS1115
 
 # Brewblox Host ip address
-BREWBLOX_HOST = '192.168.1.2'
+HOST = '192.168.1.2'
 
 # Brewblox Port
-BREWBLOX_PORT = 80
+PORT = 80
 
 # The history service is subscribed to all topic starting with this
 HISTORY_TOPIC = 'brewcast/history'
@@ -56,7 +56,7 @@ class Meter:
 
     def run(self):
         try:
-            self.client.connect_async(host=BREWBLOX_HOST, port=BREWBLOX_PORT)
+            self.client.connect_async(host=HOST, port=PORT)
             self.client.loop_start()
 
             while True:
