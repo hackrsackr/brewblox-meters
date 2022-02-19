@@ -30,8 +30,8 @@ ADS_FULLSCALE = 32767
 GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
-ads1_keys = ['mash_pH', 'boil_pH', 'mash_ORP', 'boil_ORP']
-ads2_keys = ['inline_pH', 'liquor_pH', 'inline_ORP', 'liquor_ORP']
+ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
+ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
 
 class Meter:
     def __init__(self) -> None:
@@ -89,7 +89,7 @@ class Meter:
                 ''' Output '''
                 message = {
                     'key' : 'meters',
-                    'data': {'meter_1': d1, 'meter_2': d2}
+                    'data': {'meter-1': d1, 'meter-2': d2}
                 }
 
                 self.client.publish(TOPIC, json.dumps(message))

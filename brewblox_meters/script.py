@@ -41,15 +41,15 @@ GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
 # Names of each input
-ads1_keys = ['mash_pH', 'boil_pH', 'mash_ORP', 'boil_ORP']
-ads2_keys = ['inline_pH', 'liquor_pH', 'inline_ORP', 'liquor_ORP']
+ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
+ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
 ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
 
 # USB port of esp32 thats reading flowmeters
-FLOWMETER_PORT = '/dev/ttyUSB0'
+FLOWMETER_SERIAL_PORT = '/dev/ttyUSB0'
 
-ser = serial.Serial(port=FLOWMETER_PORT,
+ser = serial.Serial(port=FLOWMETER_SERIAL_PORT,
                     baudrate=115200,
                     timeout=1)
 
