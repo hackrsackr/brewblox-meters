@@ -3,12 +3,7 @@
         {
             "name": "Mac",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/cores/esp32",
-                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/tools/sdk/include/freertos",
-                "/Users/robknighton/.platformio/packages/toolchain-xtensa32@2.50200.97/xtensa-esp32-elf/sysroot/usr/include",
-                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src",
-                "/Users/robknighton/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
             "macFrameworkPath": [
