@@ -44,7 +44,7 @@ ADS1115_CONFIG_COMP_QUE_DISABLE = 0x0003
 
 
 class ADS1115(object):
-    '''Base functionality for ADS1x15 analog to digital converters.'''
+    """Base functionality for ADS1x15 analog to digital converters."""
 
     def __init__(self, address=ADS1115_DEFAULT_ADDRESS, i2c=None, **kwargs):
         if i2c is None:
@@ -53,7 +53,7 @@ class ADS1115(object):
         self._device = i2c.get_i2c_device(address, **kwargs)
 
     def _data_rate_default(self):
-        '''Default from datasheet page 16, config register DR bit default.'''
+        """Default from datasheet page 16, config register DR bit default."""
         return 128
 
     def _data_rate_config(self, data_rate):
@@ -70,9 +70,9 @@ class ADS1115(object):
         return value
 
     def _read(self, mux, gain, data_rate, mode):
-        '''Perform an ADC read with the provided mux, gain, data_rate, and mode
+        """Perform an ADC read with the provided mux, gain, data_rate, and mode
         values.  Returns the signed integer result of the read.
-        '''
+        """
         config = ADS1115_CONFIG_OS_SINGLE  # Go out of power-down mode for conversion.
         # Specify mux value.
         config |= (mux & 0x07) << ADS1115_CONFIG_MUX_OFFSET
@@ -98,9 +98,9 @@ class ADS1115(object):
         return self._conversion_value(result[1], result[0])
 
     def read_adc(self, channel, gain=1, data_rate=None):
-        '''Read a single ADC channel and return the ADC value as a signed integer
+        """Read a single ADC channel and return the ADC value as a signed integer
         result.  Channel must be a value within 0-3.
-        '''
+        """
         assert 0 <= channel <= 3, 'Channel must be a value within 0-3!'
         # Perform a single shot read and set the mux value to the channel plus
         return self._read(channel + 0x04, gain, data_rate, ADS1115_CONFIG_MODE_SINGLE)

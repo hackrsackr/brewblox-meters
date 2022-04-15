@@ -3,7 +3,7 @@ from time import sleep
 
 from paho.mqtt import client as mqtt
 
-from ads1115 import ADS1115
+from ADS1115 import ADS1115
 
 # Brewblox Host ip address
 HOST = '192.168.1.2'
@@ -61,7 +61,7 @@ class Meter:
             self.client.loop_start()
 
             while True:
-                ''' Iterate through ads1 channels and compile data'''
+                """ Iterate through ads1 channels and compile data """
                 d1 = {}
                 for index, ads1_key in enumerate(ads1_keys):
                     self.name = ads1_key
@@ -74,7 +74,7 @@ class Meter:
                         'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
 
-                ''' Iterate through ads1 channels and compile data'''
+                """ Iterate through ads1 channels and compile data """
                 d2 = {}
                 for index, ads2_key in enumerate(ads2_keys):
                     self.name = ads2_key
@@ -87,7 +87,7 @@ class Meter:
                         'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
 
-                ''' Output '''
+                """ Output """
                 message = {
                     'key': 'meters',
                     'data': {'meter-1': d1, 'meter-2': d2}

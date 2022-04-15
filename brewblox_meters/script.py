@@ -1,8 +1,8 @@
-'''
+"""
 main script
 reads 4 ads1115 ADC boards outputs into one dictionary
 publishes output to brewblox over mqtt
-'''
+"""
 import json
 import serial
 
@@ -10,7 +10,7 @@ from time import sleep
 
 from paho.mqtt import client as mqtt
 
-from ads1115 import ADS1115
+from ADS1115 import ADS1115
 from Meter import Meter
 from VolumeSensor import VolumeSensor
 

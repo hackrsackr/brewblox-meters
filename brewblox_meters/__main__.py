@@ -6,7 +6,9 @@ from argparse import ArgumentParser
 
 from brewblox_service import brewblox_logger, http, mqtt, scheduler, service
 
-import Meter, VolumeSensor
+from brewblox_meters import Meter, VolumeSensor
+
+from ADS1115 import ADS1115
 
 LOGGER = brewblox_logger(__name__)
 
@@ -49,6 +51,7 @@ def main():
     # To keep everything consistent, examples also have the setup() function
     # In setup() they register everything that must be done before the service starts
     # It's not required to use this pattern, but it makes code easier to understand
+    ADS1115.run(app)
     Meter.run(app)
     VolumeSensor.run(app)
 
