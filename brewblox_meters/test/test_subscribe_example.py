@@ -2,11 +2,12 @@
 Checks whether subscribe_example.SubscribingFeature works as expected.
 """
 
-import pytest
-from brewblox_service.testing import matching
 from unittest.mock import AsyncMock
 
-from brewblox_meters import subscribe_example
+import pytest
+from brewblox_service.testing import matching
+
+from YOUR_PACKAGE import subscribe_example
 
 TESTED = subscribe_example.__name__
 

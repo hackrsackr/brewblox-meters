@@ -15,13 +15,13 @@ PORT = 80
 HISTORY_TOPIC = 'brewcast/history'
 TOPIC = HISTORY_TOPIC + '/meters'
 
-'''
+"""
 ADS1115 names and addresses
 ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
 ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
 ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
 ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
-'''
+"""
 ads1 = ADS1115(address=0x48)
 ads2 = ADS1115(address=0x49)
 
@@ -32,6 +32,7 @@ ADS_MAX_V = 4.096 / GAIN
 
 ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
 ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
+
 
 class Meter:
     def __init__(self) -> None:
@@ -69,8 +70,8 @@ class Meter:
                     self.ma = self.adc * self.adsMaxV / self.bit_max * 4
 
                     d1[self.name] = {
-                        'pH'   : round(self.ma_to_ph(self.ma), 2),
-                        'ORP'  : round(self.ma_to_orp(self.ma), 2)
+                        'pH': round(self.ma_to_ph(self.ma), 2),
+                        'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
 
                 ''' Iterate through ads1 channels and compile data'''
@@ -82,13 +83,13 @@ class Meter:
                     self.ma = self.adc * self.adsMaxV / self.bit_max * 4
 
                     d2[self.name] = {
-                        'pH'   : round(self.ma_to_ph(self.ma), 2),
-                        'ORP'  : round(self.ma_to_orp(self.ma), 2)
+                        'pH': round(self.ma_to_ph(self.ma), 2),
+                        'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
 
                 ''' Output '''
                 message = {
-                    'key' : 'meters',
+                    'key': 'meters',
                     'data': {'meter-1': d1, 'meter-2': d2}
                 }
 
@@ -98,6 +99,7 @@ class Meter:
 
         finally:
             self.client.loop_stop
+
 
 if __name__ == '__main__':
     Meter().run()

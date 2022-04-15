@@ -1,0 +1,6 @@
+
+# pyenv config
+
+pyenv shell 3.9.9
+poetry env use 3.9.9
+poetry install
