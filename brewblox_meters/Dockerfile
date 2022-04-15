@@ -1,6 +1,6 @@
-FROM python:3.7-slim
+FROM python:3.9-buster as base
 
-COPY ads1115.py /app/ads1115.py
+COPY ADS1115.py /app/ADS1115.py
 COPY Meter.py /app/Meter.py
 COPY VolumeSensor.py /app/VolumeSensor.py
 COPY script.py /app/script.py
