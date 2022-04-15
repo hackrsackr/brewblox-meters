@@ -1,6 +1,8 @@
 
-# pyenv config
-
+# pyenv config initial brewblox setup
 pyenv shell 3.9.9
 poetry env use 3.9.9
 poetry install
+
+# activate venv
+source /Users/rob/brewblox-meters/.venv/bin/activate
