@@ -30,8 +30,6 @@ GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
 
-
-
 class VolumeSensor:
     def __init__(self) -> None:
         # Create a websocket MQTT client
