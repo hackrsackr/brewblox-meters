@@ -30,7 +30,8 @@ GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
 keys = ['liqr_volume', 'mash_volume', 'boil_volume']
-adc_offsets = [7984, 6553, 6672]
+#adc_offsets = [7984, 6553, 6672]
+adc_offsets = [8000, 5824, 7120]
 
 
 class VolumeSensor:
