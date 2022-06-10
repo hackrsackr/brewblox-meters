@@ -3,7 +3,7 @@ from time import sleep
 
 from paho.mqtt import client as mqtt
 
-from ads1115 import ADS1115
+from ADS1115 import ADS1115
 
 # Brewblox Host ip address
 HOST = '192.168.1.2'
