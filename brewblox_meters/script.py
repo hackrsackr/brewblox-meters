@@ -68,12 +68,11 @@ def main():
                 m1 = Meter()
                 m1.name = ads1_key
                 m1.ads = ads1
-                m1.adc = m1.ads.read_adc(index, gain=GAIN)
-                m1.ma = m1.adc * ADS_MAX_V / ADS_FULLSCALE * 4
 
                 d1[m1.name] = {
-                    'pH': round(m1.ma_to_ph(m1.ma), 2),
-                    'ORP': round(m1.ma_to_orp(m1.ma), 2)
+                        'mA': round(m1.read_ma(index), 2),
+                        'pH': round(m1.ma_to_ph(m1.ma), 2),
+                        'ORP': round(m1.ma_to_orp(m1.ma), 2)
                 }
 
             # Iterate through ads2 channels, populate dict d2
@@ -82,27 +81,27 @@ def main():
                 m2 = Meter()
                 m2.name = ads2_key
                 m2.ads = ads2
-                m2.adc = m2.ads.read_adc(index, gain=GAIN)
-                m2.ma = m2.adc * m2.adsMaxV / m2.bit_max * 4
 
                 d2[m2.name] = {
-                    'pH': round(m2.ma_to_ph(m2.ma), 2),
-                    'ORP': round(m2.ma_to_orp(m2.ma), 2)
+                        'mA': round(m2.read_ma(index), 2),
+                        'pH': round(m2.ma_to_ph(m2.ma), 2),
+                        'ORP': round(m2.ma_to_orp(m2.ma), 2)
                 }
 
             # Iterate through ads3 channels, populate dict d3
             d3 = {}
-            adc3_offsets = [7984, 6553, 6672]
+            adc3_offsets = [8000, 5824, 7720]
             for index, ads3_key in enumerate(ads3_keys):
                 v = VolumeSensor()
                 v.name = ads3_key
                 v.ads = ads3
-                v.adc = v.read_ads(index, adc3_offsets[index])
-                v.volts = v.adc * v.adsMaxV / v.bit_max
 
                 d3[v.name] = {
-                    'liters': round(v.adc_to_liters(), 2),
-                    'gallons': round(v.adc_to_gallons(), 2)
+                        'adc': v.read_ads(index),
+                        'trimmed-adc': v.trim_adc(v.adc, adc3_offsets[index]),
+                        'volts': round(v.read_volts(index), 2),
+                        'liters': round(v.adc_to_liters(), 2),
+                        'gallons': round(v.adc_to_gallons(), 2)
                 }
 
             d4 = {}

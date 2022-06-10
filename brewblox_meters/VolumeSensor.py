@@ -29,11 +29,7 @@ ADS_FULLSCALE = 32767
 GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
-# Names of sensors
-keys = ['liqr_volume', 'mash_volume', 'boil_volume']
 
-# old adc_offsets = [7984, 6553, 6672]
-adc_offsets = [8000, 5824, 7120]
 
 
 class VolumeSensor:
@@ -48,9 +44,17 @@ class VolumeSensor:
         self.bitsPerGallon = 1675
         self.bitsPerLiter = 442.54
 
-    def read_ads(self, channel, offset) -> int:
+    def read_ads(self, channel) -> int:
         self.adc = ADS.read_adc(channel, gain=GAIN)
         return self.adc
+
+    def trim_adc(self, adc, offset) -> int:
+        self.trimmed_adc = adc - offset
+        return self.trimmed_adc
+
+    def read_volts(self, channel) -> float:
+        self.volts = self.read_ads(channel) * ADS_MAX_V / ADS_FULLSCALE
+        return self.volts
 
     def adc_to_volts(self) -> float:
         return self.adc * self.adsMaxV / self.bit_max
@@ -61,6 +65,9 @@ class VolumeSensor:
     def adc_to_liters(self) -> float:
         return self.adc / self.bitsPerLiter
 
+    def set_offset(self, offset) -> None:
+        self.offset = offset
+
     def run(self):
         try:
             self.client.connect_async(host=HOST, port=PORT)
@@ -68,14 +75,17 @@ class VolumeSensor:
 
             while True:
                 data = {}
+                keys = ['liqr_volume', 'mash_volume', 'boil_volume']
+                adc_offsets = [8000, 5824, 7120]
 
                 for index, key in enumerate(keys):
                     self.name = key
-                    self.adc = self.read_ads(index, adc_offsets[index])
-                    self.volts = self.adc * self.adsMaxV / self.bit_max
+                    self.ads = ADS
 
                     data[self.name] = {
-                        'adc': self.adc,
+                        'adc': self.read_ads(index),
+                        'trimmed-adc': self.trim_adc(self.read_ads(index), adc_offsets[index]),
+                        'volts': round(self.read_volts(index), 2),
                         'liters': round(self.adc_to_liters(), 2),
                         'gallons': round(self.adc_to_gallons(), 2)
                     }

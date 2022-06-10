@@ -3,7 +3,7 @@ from time import sleep
 
 from paho.mqtt import client as mqtt
 
-from ADS1115 import ADS1115
+from ads1115 import ADS1115
 
 # Brewblox Host ip address
 HOST = '192.168.1.2'
@@ -43,8 +43,13 @@ class Meter:
         self.bit_max = ADS_FULLSCALE
         self.adsMaxV = ADS_MAX_V
 
-    def read_ads(self, channel, offset=0) -> None:
+    def read_ads(self, channel, offset=0) -> int:
         self.adc = self.ads.read_adc(channel, gain=GAIN) + offset
+        return self.adc
+
+    def read_ma(self, channel) -> float:
+        self.ma = self.read_ads(channel) * ADS_MAX_V / ADS_FULLSCALE * 4
+        return self.ma
 
     def ma_to_ph(self, ma) -> float:
         return ma / 2
@@ -66,10 +71,10 @@ class Meter:
                 for index, ads1_key in enumerate(ads1_keys):
                     self.name = ads1_key
                     self.ads = ads1
-                    self.adc = self.ads.read_adc(index, gain=GAIN)
-                    self.ma = self.adc * self.adsMaxV / self.bit_max * 4
 
                     d1[self.name] = {
+                        'adc': self.read_ads(index),
+                        'mA': round(self.read_ma(index), 2),
                         'pH': round(self.ma_to_ph(self.ma), 2),
                         'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
@@ -79,10 +84,10 @@ class Meter:
                 for index, ads2_key in enumerate(ads2_keys):
                     self.name = ads2_key
                     self.ads = ads2
-                    self.adc = self.ads.read_adc(index, gain=GAIN)
-                    self.ma = self.adc * self.adsMaxV / self.bit_max * 4
 
                     d2[self.name] = {
+                        'adc': self.read_ads(index),
+                        'mA': round(self.read_ma(index), 2),
                         'pH': round(self.ma_to_ph(self.ma), 2),
                         'ORP': round(self.ma_to_orp(self.ma), 2)
                     }
