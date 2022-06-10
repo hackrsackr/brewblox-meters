@@ -10,7 +10,7 @@ from time import sleep
 
 from paho.mqtt import client as mqtt
 
-from ads1115 import ADS1115
+from ADS1115 import ADS1115
 from Meter import Meter
 from VolumeSensor import VolumeSensor
 
