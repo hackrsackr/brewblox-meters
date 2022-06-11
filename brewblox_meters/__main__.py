@@ -5,8 +5,7 @@ Example of how to import and use the brewblox service
 from argparse import ArgumentParser
 
 from brewblox_service import brewblox_logger, http, mqtt, scheduler, service
-from Meter import Meter
-from VolumeSensor import VolumeSensor
+from brewblox_meters import Meter, VolumeSensor
 
 LOGGER = brewblox_logger(__name__)
 
