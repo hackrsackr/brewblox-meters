@@ -90,7 +90,7 @@ def main():
 
             # Iterate through ads3 channels, populate dict d3
             d3 = {}
-            adc3_offsets = [8200, 5824, 7720]
+            adc3_offsets = [8000, 5824, 6960]
             for index, ads3_key in enumerate(ads3_keys):
                 v = VolumeSensor()
                 v.name = ads3_key

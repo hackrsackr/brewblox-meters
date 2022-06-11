@@ -58,10 +58,10 @@ class VolumeSensor:
         return self.adc * self.adsMaxV / self.bit_max
 
     def adc_to_gallons(self) -> float:
-        return self.adc / self.bitsPerGallon
+        return self.trimmed_adc / self.bitsPerGallon
 
     def adc_to_liters(self) -> float:
-        return self.adc / self.bitsPerLiter
+        return self.trimmed_adc / self.bitsPerLiter
 
     def set_offset(self, offset) -> None:
         self.offset = offset
@@ -74,7 +74,7 @@ class VolumeSensor:
             while True:
                 data = {}
                 keys = ['liqr_volume', 'mash_volume', 'boil_volume']
-                adc_offsets = [8000, 5824, 7120]
+                adc_offsets = [8000, 5824, 6960]
 
                 for index, key in enumerate(keys):
                     self.name = key
