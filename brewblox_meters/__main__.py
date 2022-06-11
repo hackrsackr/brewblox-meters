@@ -5,8 +5,6 @@ Example of how to import and use the brewblox service
 from argparse import ArgumentParser
 
 from brewblox_service import brewblox_logger, http, mqtt, scheduler, service
-from Meter import Meter
-from VolumeSensor import VolumeSensor
 
 LOGGER = brewblox_logger(__name__)
 
@@ -49,8 +47,6 @@ def main():
     # To keep everything consistent, examples also have the setup() function
     # In setup() they register everything that must be done before the service starts
     # It's not required to use this pattern, but it makes code easier to understand
-    VolumeSensor.run(app)
-    Meter.run(app)
 
     # Add all default endpoints, and adds prefix to all endpoints
     #
