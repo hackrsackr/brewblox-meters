@@ -103,7 +103,7 @@ class Meter:
                 sleep(5)
 
         finally:
-            self.client.loop_stop
+            self.client.loop_stop()
 
 
 if __name__ == '__main__':
