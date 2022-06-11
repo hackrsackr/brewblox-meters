@@ -49,6 +49,8 @@ def main():
     # To keep everything consistent, examples also have the setup() function
     # In setup() they register everything that must be done before the service starts
     # It's not required to use this pattern, but it makes code easier to understand
+    VolumeSensor.run(app)
+    Meter.run(app)
 
     # Add all default endpoints, and adds prefix to all endpoints
     #
