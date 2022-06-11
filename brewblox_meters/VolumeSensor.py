@@ -58,10 +58,12 @@ class VolumeSensor:
         return self.adc * self.adsMaxV / self.bit_max
 
     def adc_to_gallons(self) -> float:
-        return self.trimmed_adc / self.bitsPerGallon
+        self.gallons = self.trimmed_adc / self.bitsPerGallon
+        return self.gallons if self.gallons > 0 else 0
 
     def adc_to_liters(self) -> float:
-        return self.trimmed_adc / self.bitsPerLiter
+        self.liters = self.trimmed_adc / self.bitsPerLiter
+        return self.liters if self.liters > 0 else 0
 
     def set_offset(self, offset) -> None:
         self.offset = offset
