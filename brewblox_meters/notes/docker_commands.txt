@@ -1,11 +1,12 @@
-docker build --tag hackrsackr/brewblox-meters brewblox_meters/
-er push
-// for serial input
-docker run --privileged -d --rm --tty --volume /dev:/dev hackrsackr/brewblox-meters
+// docker build --tag <repo:tag> <path>
+docker build --tag hackrsackr/brewblox-meters:develop brewblox_meters/
 
-docker push hackrsackr/brewblox-meters:latest
+// run in docker container
+docker run --privileged -d --rm --tty hackrsackr/brewblox-meters:develop
 
-docker pull hackrsackr/brewblox-meters:latest
+// docker hub commands
+docker push hackrsackr/brewblox-meters:develop
+docker pull hackrsackr/brewblox-meters:develop
 
 
 
