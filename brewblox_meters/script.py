@@ -12,7 +12,6 @@ from paho.mqtt import client as mqtt
 
 from ads1115 import ADS1115
 from Meter import Meter
-from VolumeSensor import VolumeSensor
 
 # Brewblox Host ip address
 HOST = '192.168.1.2'
@@ -33,8 +32,6 @@ client.ws_set_options(path='/eventbus')
 # ADS1115 names and addresses
 ads1 = ADS1115(address=0x48)  # ADDRESS -> GND
 ads2 = ADS1115(address=0x49)  # ADDRESS -> VDD
-ads3 = ADS1115(address=0x4a)  # ADDRESS -> SDA
-ads4 = ADS1115(address=0x4b)  # ADDRESS -> SDL
 
 # Max positive bits of ADS1115's 16 bit signed integer
 ADS_FULLSCALE = 32767
@@ -44,8 +41,6 @@ ADS_MAX_V = 4.096 / GAIN
 # Names of each input
 ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
 ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
-ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
-ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
 
 # USB port of esp32 thats reading flowmeters
 FLOWMETER_SERIAL_PORT = '/dev/ttyUSB0'
@@ -88,37 +83,12 @@ def main():
                         'ORP': round(m2.ma_to_orp(m2.ma), 2)
                 }
 
-            # Iterate through ads3 channels, populate dict d3
-            d3 = {}
-            adc3_offsets = [8000, 5824, 6960]
-            for index, ads3_key in enumerate(ads3_keys):
-                v = VolumeSensor()
-                v.name = ads3_key
-                v.ads = ads3
-
-                d3[v.name] = {
-                        'adc': v.read_ads(index),
-                        'trimmed-adc': v.trim_adc(v.adc, adc3_offsets[index]),
-                        'volts': round(v.read_volts(index), 2),
-                        'liters': round(v.adc_to_liters(), 2),
-                        'gallons': round(v.adc_to_gallons(), 2)
-                }
-
-            d4 = {}
-            flow_data = ser.readline().decode().rstrip()
-            try:
-                flow_data = json.loads(flow_data)
-            except json.JSONDecodeError:
-                continue
-            d4 = flow_data
-
             # Output
             message = {
                 'key': 'meters',
                 'data': {'meter-1': d1,
-                         'meter-2': d2,
-                         'volume-sensors': d3,
-                         'flow-meters': d4}
+                         'meter-2': d2
+                         }
             }
 
             client.publish(TOPIC, json.dumps(message))
