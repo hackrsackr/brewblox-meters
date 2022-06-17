@@ -1,0 +1,48 @@
+{
+    "_HOST": "192.168.1.2",
+    "_PORT": 80,
+    "_HISTORY_TOPIC": "brewcast/history/",
+    "_SERVICE_TOPIC": "meters",
+    "_ADS_FULLSCALE": 32767,
+    "_GAIN": "2/3",
+    "_ADS_MAX_V": "meters",
+    "_ADC3_OFFSETS": [
+        8000,
+        5824,
+        6960,
+        8000
+    ],
+    "_ADS_ADDRESSES": {
+        "_ads1": "ADS1115(address=0x48)",
+        "_ads2": "ADS1115(address=0x49)",
+        "_ads3": "ADS1115(address=0x4a)",
+        "_ads4": "ADS1115(address=0x4b)"
+    },
+    "_ADS_KEYS": {
+        "_ads1_keys": [
+            "output1-1",
+            "output1-2",
+            "output1-3",
+            "output1-4"
+        ],
+        "_ads2_keys": [
+            "output2-1",
+            "output2-2",
+            "output2-3",
+            "output2-4"
+        ],
+        "_ads3_keys": [
+            "output3-1",
+            "output3-2",
+            "output3-3",
+            "output3-4"
+        ],
+        "_ads4_keys": [
+            "output4-1",
+            "output4-2",
+            "output4-3",
+            "output4-4"
+        ]
+    },
+    "_FLOWMETER_SERIAL_PORT": "/dev/ttyUSB0"
+}
