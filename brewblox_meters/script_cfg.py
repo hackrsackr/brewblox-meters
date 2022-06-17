@@ -14,7 +14,7 @@ from ads1115 import ADS1115
 from Meter import Meter
 from VolumeSensor import VolumeSensor
 
-with open("config.json", "r") as f:
+with open('config.json', 'r') as f:
     cfg = json.load(f)
     print(cfg)
 
