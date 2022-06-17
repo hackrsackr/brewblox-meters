@@ -42,10 +42,10 @@ GAIN = 2/3
 ADS_MAX_V = 4.096 / GAIN
 
 # Names of each input
-ads1_keys = ['m-1_output-1', 'm-1_output-2', 'm-1_output-3', 'm-1_output-4']
-ads2_keys = ['m-2_output-1', 'm-2_output-2', 'm-2_output-3', 'm-2_output-4']
-ads3_keys = ['liqr_volume', 'mash_volume', 'boil_volume']
-ads4_keys = ['liquour_in', 'mash_underlet', 'sauergut']
+ads1_keys = ['output1-1', 'output1-2', 'output1-3', 'output1-4']
+ads2_keys = ['output2-1', 'output2-2', 'output2-3', 'output2-4']
+ads3_keys = ['output3-1', 'output3-2', 'output3-3', 'output3-4']
+ads4_keys = ['output4-1', 'output4-2', 'output4-3', 'output4-4']
 
 # USB port of esp32 thats reading flowmeters
 FLOWMETER_SERIAL_PORT = '/dev/ttyUSB0'
