@@ -16,5 +16,6 @@
     "python.analysis.extraPaths": [
         "./brewblox_meters/lib/python3.9/site-packages",
         "./brewblox_meters/.local/lib/python3.9/site-packages"
-    ]
+    ],
+    "python.linting.enabled": true
 }
