@@ -9,6 +9,6 @@ COPY script.py /app/script.py
 RUN apt-get update && apt-get -y install build-essential
 RUN pip3 install paho.mqtt
 RUN pip3 install adafruit-gpio
-RUN pip3 install pyserial
+#RUN pip3 install pyserial
 
 CMD ["python3", "-u", "/app/script.py"]
