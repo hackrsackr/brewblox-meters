@@ -8,6 +8,7 @@ ENV PIP_FIND_LINKS=/wheeley
 
 RUN set -ex \
     && mkdir /wheeley \
+    && pip3 install cryptography \
     && pip3 install --upgrade pip wheel \
     && pip3 wheel --wheel-dir=/wheeley -r /app/requirements.txt \
     && pip3 wheel --wheel-dir=/wheeley /app/dist/*
