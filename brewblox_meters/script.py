@@ -83,6 +83,7 @@ def main():
             # Iterate through ads3 channels, populate dict d3
             d3 = {}
             adc3_offsets = [8000, 5824, 6960, 6960]
+            patch_list = [0, 0, 0, 0]
             for index, ads3_key in enumerate(ads3_keys):
                 v = VolumeSensor()
                 v.name = ads3_key
@@ -96,6 +97,8 @@ def main():
                     'gallons': round(v.adc_to_gallons(), 2)
                 }
 
+                patch_list[index] = d3[v.name]['liters']
+
             # Output
             message = {
                 'key': 'meters',
@@ -106,6 +109,70 @@ def main():
 
             client.publish(TOPIC, json.dumps(message))
             print(json.dumps(message, sort_keys=False, indent=4))
+
+            # This is a constant value. You never need to change it.
+            API_TOPIC = 'brewcast/spark/blocks'
+
+            # We'll be using the 'patch' command
+            # 'create', 'write', and 'delete' are also available
+            # https://www.brewblox.com/dev/reference/blocks_api.html
+            PATCH_TOPIC = API_TOPIC + '/patch'
+
+            # IMPORTANT !!
+            # Don't forget to first create the 'Tutorial Sensor' block
+            # Patch writes to non-existent blocks will be ignored
+
+            liqr_liters = {
+                # The block ID
+                'id': 'EXT_liqrLiters',
+
+                # The unique service name
+                'serviceId': 'spark-three',
+
+                # https://www.brewblox.com/dev/reference/block_types.html#tempsensorexternal
+                'type': 'TempSensorExternal',
+
+                # We only write the field we want to change
+                # Because we're using patch, the other settings will remain unchanged
+                'data': {'setting[degC]': patch_list[0]},
+            }
+
+            mash_liters = {
+                # The block ID
+                'id': 'EXT_mashLiters',
+
+                # The unique service name
+                'serviceId': 'spark-three',
+
+                # https://www.brewblox.com/dev/reference/block_types.html#tempsensorexternal
+                'type': 'TempSensorExternal',
+
+                # We only write the field we want to change
+                # Because we're using patch, the other settings will remain unchanged
+                'data': {'setting[degC]': patch_list[1]},
+            }
+
+            boil_liters = {
+                # The block ID
+                'id': 'EXT_boilLiters',
+
+                # The unique service name
+                'serviceId': 'spark-three',
+
+                # https://www.brewblox.com/dev/reference/block_types.html#tempsensorexternal
+                'type': 'TempSensorExternal',
+
+                # We only write the field we want to change
+                # Because we're using patch, the other settings will remain unchanged
+                'data': {'setting[degC]': patch_list[2]},
+            }
+
+            client.publish(PATCH_TOPIC, json.dumps(liqr_liters))
+            client.publish(PATCH_TOPIC, json.dumps(mash_liters))
+            client.publish(PATCH_TOPIC, json.dumps(boil_liters))
+
+            print(f'sent {liqr_liters, mash_liters, boil_liters}')
+
             sleep(5)
 
     finally:
