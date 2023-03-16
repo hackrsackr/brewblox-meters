@@ -1,4 +1,4 @@
-FROM python:3.9-buster as base
+FROM python:3.9 as base
 
 COPY ads1115.py /app/ads1115.py
 COPY Meter.py /app/Meter.py
